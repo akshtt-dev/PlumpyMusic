@@ -22,7 +22,7 @@ It streams music from multiple sources like YouTube and Spotify, and is Lavalink
 
 ```bash
 git clone https://github.com/akshtt-dev/PlumpyMusic.git
-cd EchoBeats
+cd PlumpyMusic
 ```
 
 ### 2. Install dependencies
