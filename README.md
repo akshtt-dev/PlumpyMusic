@@ -1,4 +1,4 @@
-# 🎵 Trust Music - A Discord Music Bot
+# 🎵 Plumpy Music - A Discord Music Bot
 
 **TrustMusic** is a powerful and customizable Discord music bot built using [discord.js](https://discord.js.org/).  
 It streams music from multiple sources like YouTube and Spotify, and is Lavalink-ready for high-performance audio.
@@ -21,7 +21,7 @@ It streams music from multiple sources like YouTube and Spotify, and is Lavalink
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/akshtt-dev/TrustMusic.git
+git clone https://github.com/akshtt-dev/PlumpyMusic.git
 cd EchoBeats
 ```
 
@@ -62,7 +62,7 @@ node index.js
 Or with [PM2](https://pm2.io/):
 
 ```bash
-pm2 start index.js --name Trust Music
+pm2 start index.js --name Plumpy Music
 ```
 
 ---
