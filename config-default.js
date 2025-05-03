@@ -1,4 +1,5 @@
 export default {
+  supportGuildLink: "https://discord.gg/689PYf8C8B",
   emoji: {
     music: "<a:music:1367696718354976838>",
     skip: "<:skip:1367701495423828010>",
@@ -8,7 +9,8 @@ export default {
     time: "<a:timeout:1367697527289413712>",
     guitar: "<a:guitar~1:1367699996568453201>",
     ping: "<:milksleep:1367721227028008980>",
-  },  
+    misc: "<:milk_think:1368256460731191448>",
+  },
   nodes: [
     {
       id: "",
