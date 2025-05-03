@@ -41,9 +41,10 @@ export default {
         });
         return interaction.editReply({ embeds: [nonPremiumEmbed] }); //No config found, so we create one with the new setting and it also means the user is not premium
       }
-
-      if (!guildConfig.premium) {
-        return interaction.editReply({ embeds: [nonPremiumEmbed] });
+      if (config.premiumCmds.stayConnected) {
+        if (!guildConfig.premium) {
+          return interaction.editReply({ embeds: [nonPremiumEmbed] });
+        }
       }
 
       if (guildConfig.stayConnected === enabled) {

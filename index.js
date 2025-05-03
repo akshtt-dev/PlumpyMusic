@@ -84,18 +84,16 @@ client.lavashark.on("queueEnd", async (player) => {
     .setTimestamp();
   channel.send({ embeds: [embed] });
 
-  if (config.premiumCmds.stayConnected) {
-    try {
-      const guildConfig = await GuildConfig.findOne({
-        guildId: player.guildId,
-      });
+  try {
+    const guildConfig = await GuildConfig.findOne({
+      guildId: player.guildId,
+    });
 
-      if (!guildConfig || !guildConfig.stayConnected) {
-        player.destroy();
-      }
-    } catch (err) {
-      console.error("Error in queueEnd:", err);
+    if (!guildConfig || !guildConfig.stayConnected) {
+      player.destroy();
     }
+  } catch (err) {
+    console.error("Error in queueEnd:", err);
   }
 });
 
