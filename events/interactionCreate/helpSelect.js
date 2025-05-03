@@ -16,6 +16,47 @@ const miscCommands = [
   },
 ];
 
+const musicCommands = [
+  {
+    name: "play",
+    description: "Play a song from YouTube.",
+  },
+  {
+    name: "join",
+    description: "Make the bot join your voice channel.",
+  },
+  {
+    name: "disconnect",
+    description: "Make the bot leave your voice channel.",
+  },
+  {
+    name: "skip",
+    description: "Skip the current song.",
+  },
+  {
+    name: "nowplaying",
+    description: "Show the current song playing.",
+  },
+  {
+    name: "queue",
+    description: "Show the current song queue.",
+  },
+];
+
+const settingsCommands = [
+  {
+    name: "stay-connected",
+    description:
+      "Keep the bot connected to the voice channel even when no one is in it.",
+    premium: config.premiumCmds.stayConnected,
+  },
+  {
+    name: "set-music-channel",
+    description:
+      "Sets a specific voice channel where the bot will always play music and ignore others.",
+  },
+];
+
 export default async (interaction) => {
   try {
     if (
@@ -32,6 +73,14 @@ export default async (interaction) => {
         selectedCommands = miscCommands;
         categoryTitle = `${config.emoji.misc} Miscellaneous Commands`;
         break;
+      case "music":
+        selectedCommands = musicCommands;
+        categoryTitle = `${config.emoji.music} Music Commands`;
+        break;
+      case "settings":
+        selectedCommands = settingsCommands;
+        categoryTitle = `${config.emoji.settings} Settings Commands`;
+        break;
       default:
         return;
     }
@@ -46,7 +95,7 @@ export default async (interaction) => {
       .setTitle(categoryTitle)
       .addFields(
         selectedCommands.map((cmd) => ({
-          name: `\`/${cmd.name}\``,
+          name: `\`/${cmd.name}\` ${cmd.premium ? (config.emoji.premium || "⭐") : ""}`,
           value: cmd.description,
           inline: false,
         }))

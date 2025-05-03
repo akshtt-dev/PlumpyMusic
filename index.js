@@ -5,7 +5,20 @@ import path from "path";
 import { LavaShark } from "lavashark";
 import dotenv from "dotenv";
 import config from "./config.js";
+import mongoose from "mongoose";
+import GuildConfig from "./models/guildConfig.js";
 dotenv.config();
+
+// Connect to MongoDB
+await mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("Connected to MongoDB Instance.");
+  })
+  .catch((err) => {
+    console.error("Error connecting to MongoDB:", err.message);
+    process.exit(1);
+  });
 
 const client = new Client({
   intents: [
@@ -22,8 +35,8 @@ new CommandKit({
   client,
   commandsPath: path.join(__dirname, "commands"),
   eventsPath: path.join(__dirname, "events"),
-  devGuildIds: ["1185777565034623088"],
-  devUserIds: ["1056531806763102218"],
+  devUserIds: config.devUserIds,
+  devGuildIds: config.devGuildIds,
   bulkRegister: true,
 });
 
@@ -61,7 +74,7 @@ client.lavashark.on("trackStart", (player, track) => {
   channel.send({ embeds: [embed] });
 });
 
-client.lavashark.on("queueEnd", (player) => {
+client.lavashark.on("queueEnd", async (player) => {
   const channel = client.channels.cache.get(player.textChannelId);
   if (!channel) return;
 
@@ -70,6 +83,20 @@ client.lavashark.on("queueEnd", (player) => {
     .setDescription(`${config.emoji.sad} Queue ended`)
     .setTimestamp();
   channel.send({ embeds: [embed] });
+
+  if (config.premiumCmds.stayConnected) {
+    try {
+      const guildConfig = await GuildConfig.findOne({
+        guildId: player.guildId,
+      });
+
+      if (!guildConfig || !guildConfig.stayConnected) {
+        player.destroy();
+      }
+    } catch (err) {
+      console.error("Error in queueEnd:", err);
+    }
+  }
 });
 
 client.lavashark.on("error", (node, err) => {

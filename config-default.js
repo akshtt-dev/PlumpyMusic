@@ -1,4 +1,9 @@
 export default {
+  devUserIds: [""],
+  devGuildIds: [""],
+  premiumCmds: {
+    stayConnected: false,
+  },
   supportGuildLink: "https://discord.gg/689PYf8C8B",
   emoji: {
     music: "<a:music:1367696718354976838>",
@@ -10,6 +15,8 @@ export default {
     guitar: "<a:guitar~1:1367699996568453201>",
     ping: "<:milksleep:1367721227028008980>",
     misc: "<:milk_think:1368256460731191448>",
+    settings: "<:gear:1368287098486128791>",
+    premium: "<:premium:1368289436802093120>",
   },
   nodes: [
     {
