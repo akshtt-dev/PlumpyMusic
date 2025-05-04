@@ -5,6 +5,7 @@ import {
   MessageFlags,
 } from "discord.js";
 import GuildConfig from "../../models/guildConfig.js";
+import config from "../../config.js";
 
 export default {
   data: new SlashCommandBuilder()
